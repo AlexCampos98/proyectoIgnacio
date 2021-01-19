@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.PropertyConfigurator;
 import proyectoignaciocad.ProyectoIgnacioCAD;
+import proyectoignaciocad.entrenamiento;
 import proyectoignaciocad.excepcionProyecto;
 import proyectoignaciocad.usuario;
 
@@ -181,7 +182,7 @@ public class main
                 logger.error(ex.getCodigoError() + " - " + ex.getMensajeErrorAdministrador() + " - " + ex.getSentenciaSQL());
             }
             
-            System.out.println("Los datos han sido guardados. Todavia no, esta en proceso de creacion.");
+            System.out.println("Los datos han sido guardados.");
 
         } //Tabla entrenamiento
         else if (opcion.equals("2"))
@@ -245,7 +246,24 @@ public class main
             /**
              * Zona donde se enviarian los datos, para insertarlos en la BD
              */
-            System.out.println("Los datos han sido guardados. Todavia no, esta en proceso de creacion.");
+            
+//            entrenamiento entrenamiento = new entrenamiento(null, plazas, nombre, fechaEntranamiento, idUsuarioEntrenador, idUsuarioDeportista);
+//            
+//            ProyectoIgnacioCAD conexion = new ProyectoIgnacioCAD();
+//            
+//            try
+//            {
+//                conexion.insertarEntrenamiento(entrenamiento);
+//            } catch (excepcionProyecto ex)
+//            {
+//                System.out.println(ex.getMensajeErrorUsuario());
+//                
+//                PropertyConfigurator.configure("logs\\log4j.properties");
+//                org.apache.log4j.Logger logger = LogManager.getLogger("ERROR");
+//                logger.error(ex.getCodigoError() + " - " + ex.getMensajeErrorAdministrador() + " - " + ex.getSentenciaSQL());
+//            }
+            
+            System.out.println("Los datos han sido guardados.");
         }
     }
 

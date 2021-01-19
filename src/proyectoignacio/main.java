@@ -9,8 +9,15 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.PropertyConfigurator;
+import proyectoignaciocad.ProyectoIgnacioCAD;
+import proyectoignaciocad.excepcionProyecto;
+import proyectoignaciocad.usuario;
 
 /**
  *
@@ -157,6 +164,23 @@ public class main
             /**
              * Zona donde se enviarian los datos, para insertarlos en la BD
              */
+            
+            usuario usuario = new usuario(null, correo, nombre, apellido1, apellido2, telefono, telefonoEmergencia, nombreUsuario);
+            
+            ProyectoIgnacioCAD conexion = new ProyectoIgnacioCAD();
+            
+            try
+            {
+                conexion.insertarUsuario(usuario);
+            } catch (excepcionProyecto ex)
+            {
+                System.out.println(ex.getMensajeErrorUsuario());
+                
+                PropertyConfigurator.configure("logs\\log4j.properties");
+                org.apache.log4j.Logger logger = LogManager.getLogger("ERROR");
+                logger.error(ex.getCodigoError() + " - " + ex.getMensajeErrorAdministrador() + " - " + ex.getSentenciaSQL());
+            }
+            
             System.out.println("Los datos han sido guardados. Todavia no, esta en proceso de creacion.");
 
         } //Tabla entrenamiento

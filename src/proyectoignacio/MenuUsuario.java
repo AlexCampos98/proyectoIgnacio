@@ -292,7 +292,7 @@ public class MenuUsuario
     public void menuLeerTodos()
     {
         Scanner espera = new Scanner(System.in);
-        System.out.println("MENU BUSQUEDA DE INFORMACION DE TODOS LOS USUARIOS");
+        System.out.println("MENU DE INFORMACION DE TODOS LOS USUARIOS");
 
         //TODO hacer que los datos obtenidos se pongan decentemente.
         try

@@ -255,7 +255,7 @@ public class MenuUsuario
         String idUsuario;
         Usuario usu;
         System.out.println("MENU BUSQUEDA DE INFORMACION DE UN USUARIO");
-        System.out.println("Para poder buscar y obtener la informacion del usuario sera necesario su identificador.\nIntroduce el identificador del usaurio: ");
+        System.out.println("Para poder buscar y obtener la informacion del usuario sera necesario su identificador.\nIntroduce el identificador del usuario: ");
 
         idUsuario = entradaDatos.nextLine();
         while (!esEntero(idUsuario) || idUsuario.length() > 5 || Integer.parseInt(idUsuario) < 0)

@@ -7,18 +7,9 @@ package proyectoignacio;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.PropertyConfigurator;
-import proyectoignaciocad.ProyectoIgnacioCAD;
-import proyectoignaciocad.entrenamiento;
-import proyectoignaciocad.excepcionProyecto;
-import proyectoignaciocad.usuario;
 
 /**
  *
@@ -36,8 +27,8 @@ public class main
 
         do
         {
-            System.out.print("MENU\nOpcion 1: Insercion de datos.\nOpcion 2: Modificacion de datos.\nOpcion 3: Eliminacion de datos."
-                    + "\nOpcion 4: Salir de la aplicacion.\nIntroduce el numero de la opcion a elegir: ");
+            System.out.print("MENU PRINCIPAL\nOpcion 1: Crear un nuevo usuario o un entrenamiento.\nOpcion 2: Modificar un usuario o un entrenamiento.\nOpcion 3: Eliminar un usuario o un entrenamiento."
+                    + "\nOpcion 4: Obtener la informacion de usuario/s o de entrenamiento/s.\nOpcion 5: Salir de la aplicacion.\nIntroduce el numero de la opcion a elegir: ");
             opcionMenu = entradaDatos.nextLine();
 
             while (!opcionMenu.matches("-?\\d+") || !esEntero(opcionMenu) || Integer.parseInt(opcionMenu) > 4)
@@ -49,266 +40,117 @@ public class main
             switch (opcionMenu)
             {
                 case "1":
-                    System.out.println("La opcion elegida es 'Insercion de datos'.\nOpcion 1: Tabla de usuario\nOpcion 2: "
-                            + "Tabla de entrenamiento\nOpcion 3: Atras\nIntroduce el numero de la opcion a elegir: ");
+                    System.out.println("La opcion elegida es 'Introducir nueva informacion'.\nOpcion 1: Introducir un usuario\nOpcion 2: "
+                            + "Introducir un entrenamiento\nOpcion 3: Atras\nIntroduce el numero de la opcion a elegir: ");
                     opcionMenu = entradaDatos.nextLine();
-                    while (!opcionMenu.matches("-?\\d+") || !esEntero(opcionMenu) || Integer.parseInt(opcionMenu) > 3)
+                    while (!opcionMenu.matches("-?\\d+") || !esEntero(opcionMenu) || Integer.parseInt(opcionMenu) > 3 || Integer.parseInt(opcionMenu) < 0)
                     {
                         System.out.print("Dato erróneo. Introduce de nuevo el numero de la opcion a elegir: ");
                         opcionMenu = entradaDatos.nextLine();
                     }
-                    insercion(opcionMenu, entradaDatos);
+
+                    switch (opcionMenu)
+                    {
+                        case "1":
+                            MenuUsuario menuUsuario = new MenuUsuario();
+                            menuUsuario.menuInsercion(entradaDatos);
+                            break;
+
+                        case "2":
+                            MenuEntrenamiento menuEntrenamiento = new MenuEntrenamiento();
+                            menuEntrenamiento.menuInsercion(entradaDatos);
+                            break;
+                    }
                     break;
+                    
                 case "2":
-                    System.out.println("La opcion elegida es 'Modificacion de datos'.\nOpcion 1: Tabla de usuario\nOpcion 2: "
-                            + "Tabla de entrenamiento\nOpcion 3: Atras\nIntroduce el numero de la opcion a elegir: ");
+                    System.out.println("La opcion elegida es 'Modificar informacion'.\nOpcion 1: Modificar un usuario\nOpcion 2: "
+                            + "Modificar un entrenamiento\nOpcion 3: Atras\nIntroduce el numero de la opcion a elegir: ");
                     opcionMenu = entradaDatos.nextLine();
-                    while (!opcionMenu.matches("-?\\d+") || !esEntero(opcionMenu) || Integer.parseInt(opcionMenu) > 3)
+                    while (!opcionMenu.matches("-?\\d+") || !esEntero(opcionMenu) || Integer.parseInt(opcionMenu) > 3 || Integer.parseInt(opcionMenu) < 0)
                     {
                         System.out.print("Dato erróneo. Introduce de nuevo el numero de la opcion a elegir: ");
                         opcionMenu = entradaDatos.nextLine();
                     }
-                    modificacion(opcionMenu, entradaDatos);
+
+                    switch (opcionMenu)
+                    {
+                        case "1":
+                            MenuUsuario menuUsuario = new MenuUsuario();
+                            menuUsuario.menuModificacion(entradaDatos);
+                            break;
+
+                        case "2":
+                            MenuEntrenamiento menuEntrenamiento = new MenuEntrenamiento();
+                            menuEntrenamiento.menuModificacion(entradaDatos);
+                            break;
+                    }
                     break;
+                    
                 case "3":
-                    System.out.println("La opcion elegida es 'Eliminacion de datos'.\nOpcion 1: Tabla de usuario\nOpcion 2: "
-                            + "Tabla de entrenamiento\nOpcion 3: Atras\nIntroduce el numero de la opcion a elegir: ");
+                    System.out.println("La opcion elegida es 'Eliminar informacion'.\nOpcion 1: Eliminar un usuario\nOpcion 2: "
+                            + "Eliminar un entrenamiento\nOpcion 3: Atras\nIntroduce el numero de la opcion a elegir: ");
                     opcionMenu = entradaDatos.nextLine();
-                    while (!opcionMenu.matches("-?\\d+") || !esEntero(opcionMenu) || Integer.parseInt(opcionMenu) > 3)
+                    while (!opcionMenu.matches("-?\\d+") || !esEntero(opcionMenu) || Integer.parseInt(opcionMenu) > 3 || Integer.parseInt(opcionMenu) < 0)
                     {
                         System.out.print("Dato erróneo. Introduce de nuevo el numero de la opcion a elegir: ");
                         opcionMenu = entradaDatos.nextLine();
                     }
-                    eliminacion(opcionMenu, entradaDatos);
+
+                    switch (opcionMenu)
+                    {
+                        case "1":
+                            MenuUsuario menuUsuario = new MenuUsuario();
+                            menuUsuario.menuEliminacion(entradaDatos);
+                            break;
+
+                        case "2":
+                            MenuEntrenamiento menuEntrenamiento = new MenuEntrenamiento();
+                            menuEntrenamiento.menuEliminacion(entradaDatos);
+                            break;
+                    }
+                    break;
+                    
+                    case "4":
+                    System.out.println("La opcion elegida es 'Buscar y obtener informacion'.\nOpcion 1: Buscar informacion de un usuario\nOpcion 2: "
+                            + "Obtener la informacion de todos los usuarios\nOpcion 3: Buscar informacion de un entrenamiento\n"
+                            + "Opcion 4: Obtener la informacion de todos los entrenamientos\nOpcion 5: Atras\nIntroduce el numero de la opcion a elegir: ");
+                    opcionMenu = entradaDatos.nextLine();
+                    while (!opcionMenu.matches("-?\\d+") || !esEntero(opcionMenu) || Integer.parseInt(opcionMenu) > 3 || Integer.parseInt(opcionMenu) < 0)
+                    {
+                        System.out.print("Dato erróneo. Introduce de nuevo el numero de la opcion a elegir: ");
+                        opcionMenu = entradaDatos.nextLine();
+                    }
+
+                    switch (opcionMenu)
+                    {
+                        case "1":
+                            MenuUsuario menuUsuario = new MenuUsuario();
+                            menuUsuario.menuLeer(entradaDatos);
+                            break;
+
+                        case "2":
+                            MenuUsuario menuUsuario1 = new MenuUsuario();
+                            menuUsuario1.menuLeerTodos();
+                            break;
+                            
+                        case "4":
+                            MenuEntrenamiento menuEntrenamiento = new MenuEntrenamiento();
+                            menuEntrenamiento.menuLeer(entradaDatos);
+                            break;
+
+                        case "5":
+                            MenuEntrenamiento menuEntrenamiento1 = new MenuEntrenamiento();
+                            menuEntrenamiento1.menuLeerTodos();
+                            break;
+                    }
                     break;
             }
-        } while (!opcionMenu.equals("4"));
+        } while (!opcionMenu.equals("5"));
 
         System.out.println("Has elegido la opcion de salida de la aplicacion. Hasta la vista.");
 
         entradaDatos.close();
-    }
-
-    /**
-     * Menu de insercion de datos de las tablas
-     *
-     * @param entradaDatos
-     * @param opcion
-     */
-    public static void insercion(String opcion, Scanner entradaDatos)
-    {
-
-        //Tabla usuario
-        if (opcion.equals("1"))
-        {
-            String correo, nombre, apellido1, apellido2, telefono, telefonoEmergencia, nombreUsuario;
-
-            System.out.print("Vamos a introducir los siguientes datos para la creacion del usuario:\nIntroduce "
-                    + "el correo: ");
-            correo = entradaDatos.nextLine();
-            while (!esCorreo(correo))
-            {
-                System.out.print("Dato erróneo. Introduce de nuevo el correo (____@____.___): ");
-                correo = entradaDatos.nextLine();
-            }
-
-            System.out.print("Introduce el nombre: ");
-            nombre = entradaDatos.nextLine();
-            while (nombre.equals(""))
-            {
-                System.out.print("No has introducido ningun nombre. Introduce de nuevo el nombre: ");
-                nombre = entradaDatos.nextLine();
-            }
-
-            System.out.print("Introduce el primer apellido: ");
-            apellido1 = entradaDatos.nextLine();
-            while (apellido1.equals(""))
-            {
-                System.out.print("No has introducido ningun apellido. Introduce de nuevo el primer apellido: ");
-                apellido1 = entradaDatos.nextLine();
-            }
-
-            System.out.print("Introduce el segundo apellido: ");
-            apellido2 = entradaDatos.nextLine();
-            while (apellido2.equals(""))
-            {
-                System.out.print("No has introducido ningun apellido. Introduce de nuevo el segundo apellido: ");
-                apellido2 = entradaDatos.nextLine();
-            }
-
-            System.out.print("Introduce el numero de telefono: ");
-            telefono = entradaDatos.nextLine();
-
-            while (!esEntero(telefono) || telefono.length() != 9)
-            {
-                System.out.print("Dato erróneo. Introduce de nuevo el numero de telefono: ");
-                telefono = entradaDatos.nextLine();
-            }
-
-            System.out.print("Introduce el numero de telefono de emergencia: ");
-            telefonoEmergencia = entradaDatos.nextLine();
-
-            while (!esEntero(telefonoEmergencia) || telefonoEmergencia.length() != 9)
-            {
-                System.out.print("Dato erróneo. Introduce de nuevo el numero de telefono de emergencia: ");
-                telefonoEmergencia = entradaDatos.nextLine();
-            }
-
-            System.out.print("Introduce el nombre que se mostrará en la aplicacion: ");
-            nombreUsuario = entradaDatos.nextLine();
-            while (nombreUsuario.equals(""))
-            {
-                System.out.print("No has introducido ningun nombre. Introduce de nuevo el nombre que se mostrará en la aplicacion: ");
-                nombreUsuario = entradaDatos.nextLine();
-            }
-
-            /**
-             * Zona donde se enviarian los datos, para insertarlos en la BD
-             */
-            
-            usuario usuario = new usuario(null, correo, nombre, apellido1, apellido2, telefono, telefonoEmergencia, nombreUsuario);
-            
-            ProyectoIgnacioCAD conexion = new ProyectoIgnacioCAD();
-            
-            try
-            {
-                conexion.insertarUsuario(usuario);
-            } catch (excepcionProyecto ex)
-            {
-                System.out.println(ex.getMensajeErrorUsuario());
-                
-                PropertyConfigurator.configure("logs\\log4j.properties");
-                org.apache.log4j.Logger logger = LogManager.getLogger("ERROR");
-                logger.error(ex.getCodigoError() + " - " + ex.getMensajeErrorAdministrador() + " - " + ex.getSentenciaSQL());
-            }
-            
-            System.out.println("Los datos han sido guardados.");
-
-        } //Tabla entrenamiento
-        else if (opcion.equals("2"))
-        {
-            String nombre, plazas, fecha, id_usuario_entrenador, id_usuario_deportista;
-            Date fechaEntranamiento;
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-            System.out.print("Introduce el nombre del entrenamiento: ");
-            nombre = entradaDatos.nextLine();
-            while (nombre.equals(""))
-            {
-                System.out.print("No has introducido ningun nombre. Introduce de nuevo el nombre del entrenamiento: ");
-                nombre = entradaDatos.nextLine();
-            }
-
-            System.out.print("Introduce el numero de plazas abiertas: ");
-            plazas = entradaDatos.nextLine();
-
-            while (!esEntero(plazas) || plazas.length() > 999)
-            {
-                System.out.print("Dato erróneo. Introduce de nuevo el numero de plazas: ");
-                plazas = entradaDatos.nextLine();
-            }
-
-            System.out.print("Introduce la fecha del entrenamiento: ");
-            fecha = entradaDatos.nextLine();
-
-            while (!esFecha(fecha))
-            {
-                System.out.print("Dato erróneo. Introduce de nuevo la fecha del entrenamiento (yyyy-MM-dd): ");
-                fecha = entradaDatos.nextLine();
-            }
-            try
-            {
-                fechaEntranamiento = sdf.parse(fecha);
-            } catch (ParseException e)
-            {
-            }
-            
-            System.out.print("Introduce el identificador del entrenador: ");
-            id_usuario_entrenador = entradaDatos.nextLine();
-
-            //Falta comprobar si este usuario existe en la tabla usuario
-            while (!esEntero(id_usuario_entrenador) || id_usuario_entrenador.length() > 99999)
-            {
-                System.out.print("Dato erróneo. Introduce de nuevo el identificador del entrenador: ");
-                id_usuario_entrenador = entradaDatos.nextLine();
-            }
-            
-            System.out.print("Introduce el identificador del deportista: ");
-            id_usuario_deportista = entradaDatos.nextLine();
-
-            //Falta comprobar si este usuario existe en la tabla usuario
-            while (!esEntero(id_usuario_deportista) || id_usuario_deportista.length() > 99999)
-            {
-                System.out.print("Dato erróneo. Introduce de nuevo el identificador del entrenador: ");
-                id_usuario_deportista = entradaDatos.nextLine();
-            }
-            
-            /**
-             * Zona donde se enviarian los datos, para insertarlos en la BD
-             */
-            
-//            entrenamiento entrenamiento = new entrenamiento(null, plazas, nombre, fechaEntranamiento, idUsuarioEntrenador, idUsuarioDeportista);
-//            
-//            ProyectoIgnacioCAD conexion = new ProyectoIgnacioCAD();
-//            
-//            try
-//            {
-//                conexion.insertarEntrenamiento(entrenamiento);
-//            } catch (excepcionProyecto ex)
-//            {
-//                System.out.println(ex.getMensajeErrorUsuario());
-//                
-//                PropertyConfigurator.configure("logs\\log4j.properties");
-//                org.apache.log4j.Logger logger = LogManager.getLogger("ERROR");
-//                logger.error(ex.getCodigoError() + " - " + ex.getMensajeErrorAdministrador() + " - " + ex.getSentenciaSQL());
-//            }
-            
-            System.out.println("Los datos han sido guardados.");
-        }
-    }
-
-    /**
-     * Menu de modificacion de datos de las tablas
-     *
-     * @param opcion
-     * @param entradaDatos
-     */
-    public static void modificacion(String opcion, Scanner entradaDatos)
-    {
-        //Tabla usuario
-        if (opcion.equals("1"))
-        {
-            String idUsuario, correo, nombre, apellido1, apellido2, telefono, telefonoEmergencia, nombreUsuario;
-            System.out.println("Vamos a introducir los siguientes datos para la creacion del usuario:\nIntroduce "
-                    + "el correo: ");
-        } //Tabla entrenamiento
-        else if (opcion.equals("2"))
-        {
-            String idEntrenamiento, nombre, fecha, plazas, id_usuario_entrenador, id_usuario_deportista;
-
-        }
-    }
-
-    /**
-     * Menu de eliminacion de datos de las tablas
-     *
-     * @param opcion
-     * @param entradaDatos
-     */
-    public static void eliminacion(String opcion, Scanner entradaDatos)
-    {
-        //Tabla usuario
-        if (opcion.equals("1"))
-        {
-            String idUsuario;
-            System.out.println("Vamos a introducir los siguientes datos para la creacion del usuario:\nIntroduce "
-                    + "el correo: ");
-        } //Tabla entrenamiento
-        else if (opcion.equals("2"))
-        {
-            String idEntrenamiento;
-
-        }
     }
 
     /**

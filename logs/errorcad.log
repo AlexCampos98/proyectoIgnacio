@@ -1,0 +1,4 @@
+2021-01-23 23:48:12,917   ERROR - Codigo de error: 1
+Mensaje para el administrador: ORA-00001: restricción única (PROYECTO.SYS_C005467) violada
+
+Sentencia SQL utilizada: INSERT INTO usuario (id_usuario, correo, nombre, apellido1, apellido2, telefono, telefonoEmergencia, nombreUsuario) VALUES (sequence_usuario.NEXTVAL,?,?,?,?,?,?,?)

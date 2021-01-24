@@ -143,7 +143,7 @@ public class MenuUsuario
     public void menuModificacion(Scanner entradaDatos)
     {
         String idUsuario, correo, nombre, apellido1, apellido2, telefono, telefonoEmergencia, nombreUsuario;
-        Usuario usu = new Usuario();
+        Usuario usu;
 
         System.out.println("MODIFICACION DE UN USUARIO");
         System.out.print("Para poder modificacar un usuario, es necesario la siguiente informacion.\nIntroduce el identificador del usuario a modificar: ");

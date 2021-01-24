@@ -31,7 +31,7 @@ public class main
                     + "\nOpcion 4: Obtener la informacion de usuario/s o de entrenamiento/s.\nOpcion 5: Salir de la aplicacion.\nIntroduce el numero de la opcion a elegir: ");
             opcionMenu = entradaDatos.nextLine();
 
-            while (!opcionMenu.matches("-?\\d+") || !esEntero(opcionMenu) || Integer.parseInt(opcionMenu) > 4)
+            while (!opcionMenu.matches("-?\\d+") || !esEntero(opcionMenu) || Integer.parseInt(opcionMenu) > 5)
             {
                 System.out.print("Dato erróneo. Introduce de nuevo el numero de la opcion a elegir: ");
                 opcionMenu = entradaDatos.nextLine();
@@ -116,7 +116,7 @@ public class main
                             + "Obtener la informacion de todos los usuarios\nOpcion 3: Buscar informacion de un entrenamiento\n"
                             + "Opcion 4: Obtener la informacion de todos los entrenamientos\nOpcion 5: Atras\nIntroduce el numero de la opcion a elegir: ");
                     opcionMenu = entradaDatos.nextLine();
-                    while (!opcionMenu.matches("-?\\d+") || !esEntero(opcionMenu) || Integer.parseInt(opcionMenu) > 3 || Integer.parseInt(opcionMenu) < 0)
+                    while (!opcionMenu.matches("-?\\d+") || !esEntero(opcionMenu) || Integer.parseInt(opcionMenu) > 5 || Integer.parseInt(opcionMenu) < 0)
                     {
                         System.out.print("Dato erróneo. Introduce de nuevo el numero de la opcion a elegir: ");
                         opcionMenu = entradaDatos.nextLine();
@@ -134,12 +134,12 @@ public class main
                             menuUsuario1.menuLeerTodos();
                             break;
                             
-                        case "4":
+                        case "3":
                             MenuEntrenamiento menuEntrenamiento = new MenuEntrenamiento();
                             menuEntrenamiento.menuLeer(entradaDatos);
                             break;
 
-                        case "5":
+                        case "4":
                             MenuEntrenamiento menuEntrenamiento1 = new MenuEntrenamiento();
                             menuEntrenamiento1.menuLeerTodos();
                             break;

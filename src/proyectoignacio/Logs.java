@@ -28,6 +28,6 @@ public class Logs
     
     public void logTrace()
     {
-        
+        //TODO
     }
 }

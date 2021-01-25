@@ -112,7 +112,7 @@ public class MenuUsuario
         System.out.print("Para poder eliminar un usuario, introduce su identificador: ");
         idUsuario = entradaDatos.nextLine();
 
-        while (!esEntero(idUsuario) || idUsuario.length() < 5 || Integer.parseInt(idUsuario) < 0)
+        while (!esEntero(idUsuario) || idUsuario.length() > 5 || Integer.parseInt(idUsuario) < 0)
         {
             System.out.println("Dato erróneo. Introduce de nuevo el identificador del usuario:");
             idUsuario = entradaDatos.nextLine();

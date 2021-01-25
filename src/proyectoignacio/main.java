@@ -166,7 +166,7 @@ public class main
     }
 
     /**
-     * Método que valida si un string contiene un dato de tipo int válido
+     * Mét.odo que valida si un string contiene un dato de tipo int válido
      *
      * @param s String a validar si contiene un dato de tipo int válido
      * @return true si el string contiene un dato de tipo int válido o false en
@@ -185,7 +185,7 @@ public class main
     }
 
     /**
-     * Método que valida si un string contiene un dato de clase SimpleDateFormat
+     * Mét.odo que valida si un string contiene un dato de clase SimpleDateFormat
      * válido
      *
      * @param s String a validar si contiene un dato de clase SimpleDateFormat

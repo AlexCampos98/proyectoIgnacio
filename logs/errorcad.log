@@ -1,4 +1,6 @@
-2021-01-23 23:48:12,917   ERROR - Codigo de error: 1
-Mensaje para el administrador: ORA-00001: restricción única (PROYECTO.SYS_C005467) violada
-
-Sentencia SQL utilizada: INSERT INTO usuario (id_usuario, correo, nombre, apellido1, apellido2, telefono, telefonoEmergencia, nombreUsuario) VALUES (sequence_usuario.NEXTVAL,?,?,?,?,?,?,?)
+2021-01-25 00:58:23,308   ERROR - Codigo de error: 4091
+Mensaje para el administrador: ORA-04091: la tabla PROYECTO.ENTRENAMIENTO está mutando, puede que el disparador/la función no puedan verla
+ORA-06512: en "PROYECTO.AUDITORIA_MAX_ENTRENO", línea 4
+ORA-04088: error durante la ejecución del disparador 'PROYECTO.AUDITORIA_MAX_ENTRENO'
+ORA-06512: en "PROYECTO.MODIFICAR_ENTRENAMIENTO", línea 11
+Sentencia SQL utilizada: call modificar_entrenamiento(?,?,?,?,?,?)

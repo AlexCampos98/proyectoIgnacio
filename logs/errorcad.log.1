@@ -1,0 +1,14 @@
+2021-01-23 23:48:12,917   ERROR - Codigo de error: 1
+Mensaje para el administrador: ORA-00001: restricción única (PROYECTO.SYS_C005467) violada
+
+Sentencia SQL utilizada: INSERT INTO usuario (id_usuario, correo, nombre, apellido1, apellido2, telefono, telefonoEmergencia, nombreUsuario) VALUES (sequence_usuario.NEXTVAL,?,?,?,?,?,?,?)
+2021-01-24 19:36:18,446   ERROR - Codigo de error: 1
+Mensaje para el administrador: ORA-00001: restricción única (PROYECTO.SYS_C005467) violada
+Sentencia SQL utilizada: INSERT INTO usuario (id_usuario, correo, nombre, apellido1, apellido2, telefono, telefonoEmergencia, nombreUsuario) VALUES (sequence_usuario.NEXTVAL,?,?,?,?,?,?,?)
+2021-01-24 21:31:20,422   ERROR - Codigo de error: 20
+Mensaje para el administrador: The Network Adapter could not establish the connectionSentencia SQL utilizada: null
+2021-01-25 00:53:28,340   ERROR - Codigo de error: 4091
+Mensaje para el administrador: ORA-04091: la tabla PROYECTO.ENTRENAMIENTO está mutando, puede que el disparador/la función no puedan verla
+ORA-06512: en "PROYECTO.AUDITORIA_MAX_ENTRENO", línea 4
+ORA-04088: error durante la ejecución del disparador 'PROYECTO.AUDITORIA_MAX_ENTRENO'
+Sentencia SQL utilizada: INSERT INTO entrenamiento (ID_ENTRENAMIENTO, NOMBRE, FECHA, PLAZAS, ID_USUARIO_ENTRENADOR, ID_USUARIO_DEPORTISTA) VALUES (sequence_entrenamiento.NEXTVAL,?,?,?,?,?)

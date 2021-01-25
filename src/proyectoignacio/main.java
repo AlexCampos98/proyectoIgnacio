@@ -60,9 +60,12 @@ public class main
                             MenuEntrenamiento menuEntrenamiento = new MenuEntrenamiento();
                             menuEntrenamiento.menuInsercion(entradaDatos);
                             break;
+
+                        default:
+                            opcionMenu = "0";
                     }
                     break;
-                    
+
                 case "2":
                     System.out.println("La opcion elegida es 'Modificar informacion'.\nOpcion 1: Modificar un usuario\nOpcion 2: "
                             + "Modificar un entrenamiento\nOpcion 3: Atras\nIntroduce el numero de la opcion a elegir: ");
@@ -84,9 +87,12 @@ public class main
                             MenuEntrenamiento menuEntrenamiento = new MenuEntrenamiento();
                             menuEntrenamiento.menuModificacion(entradaDatos);
                             break;
+
+                        default:
+                            opcionMenu = "0";
                     }
                     break;
-                    
+
                 case "3":
                     System.out.println("La opcion elegida es 'Eliminar informacion'.\nOpcion 1: Eliminar un usuario\nOpcion 2: "
                             + "Eliminar un entrenamiento\nOpcion 3: Atras\nIntroduce el numero de la opcion a elegir: ");
@@ -108,10 +114,13 @@ public class main
                             MenuEntrenamiento menuEntrenamiento = new MenuEntrenamiento();
                             menuEntrenamiento.menuEliminacion(entradaDatos);
                             break;
+
+                        default:
+                            opcionMenu = "0";
                     }
                     break;
-                    
-                    case "4":
+
+                case "4":
                     System.out.println("La opcion elegida es 'Buscar y obtener informacion'.\nOpcion 1: Buscar informacion de un usuario\nOpcion 2: "
                             + "Obtener la informacion de todos los usuarios\nOpcion 3: Buscar informacion de un entrenamiento\n"
                             + "Opcion 4: Obtener la informacion de todos los entrenamientos\nOpcion 5: Atras\nIntroduce el numero de la opcion a elegir: ");
@@ -133,7 +142,7 @@ public class main
                             MenuUsuario menuUsuario1 = new MenuUsuario();
                             menuUsuario1.menuLeerTodos();
                             break;
-                            
+
                         case "3":
                             MenuEntrenamiento menuEntrenamiento = new MenuEntrenamiento();
                             menuEntrenamiento.menuLeer(entradaDatos);
@@ -143,6 +152,9 @@ public class main
                             MenuEntrenamiento menuEntrenamiento1 = new MenuEntrenamiento();
                             menuEntrenamiento1.menuLeerTodos();
                             break;
+
+                        default:
+                            opcionMenu = "0";
                     }
                     break;
             }

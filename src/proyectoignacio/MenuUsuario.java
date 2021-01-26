@@ -5,6 +5,8 @@
  */
 package proyectoignacio;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 import proyectocad.ExcepcionProyecto;
 import proyectocad.ProyectoCAD;
@@ -267,12 +269,18 @@ public class MenuUsuario
         try
         {
             ProyectoCAD cAD = new ProyectoCAD();
+            //ProyectoCAD cAD = new ProyectoCAD("172.16.209.69", "proyecto", "kk");
             usu = cAD.leerUsuario(Integer.parseInt(idUsuario));
 
             //TODO terminar de poner bien la salida de los datos del usuario.
             if (usu.getIdUsuario() != null)
-            {
-                System.out.println(usu.toString());
+            {                
+                System.out.printf("%-15s%-30s%-15s%-20s%-21s%-15s%-27s%-1s\n", "Id_usuario", "Correo", "Nombre", "Primer apellido", 
+                "Segundo apellido", "Telefono", "Telefono de emergencia", "NickName");
+                
+                System.out.printf("%-15s%-30s%-15s%-20s%-21s%-15s%-27s%-1s\n", usu.getIdUsuario(), usu.getCorreo(), usu.getNombre(), usu.getApellido1(), 
+                usu.getApellido2(), usu.getTelefono(), usu.getTelefonoEmergencia(), usu.getNombreUsuario());
+                
             } else
             {
                 System.out.println("El usuario no existe.");
@@ -298,7 +306,19 @@ public class MenuUsuario
         try
         {
             ProyectoCAD cAD = new ProyectoCAD();
-            System.out.println(cAD.leerUsuarios());
+//            ProyectoCAD cAD = new ProyectoCAD("172.16.209.69", "proyecto", "kk");
+            ArrayList<Usuario> usuarios = cAD.leerUsuarios();
+            Iterator<Usuario> iteraUsu = usuarios.iterator();
+            
+            System.out.printf("%-15s%-30s%-15s%-20s%-21s%-15s%-27s%-1s\n", "Id_usuario", "Correo", "Nombre", "Primer apellido", 
+                "Segundo apellido", "Telefono", "Telefono de emergencia", "NickName");
+            
+            while(iteraUsu.hasNext())
+            {
+                Usuario usu = iteraUsu.next();
+                System.out.printf("%-15s%-30s%-15s%-20s%-21s%-15s%-27s%-1s\n", usu.getIdUsuario(), usu.getCorreo(), usu.getNombre(), usu.getApellido1(), 
+                usu.getApellido2(), usu.getTelefono(), usu.getTelefonoEmergencia(), usu.getNombreUsuario());
+            }
         } catch (ExcepcionProyecto ex)
         {
             String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL();

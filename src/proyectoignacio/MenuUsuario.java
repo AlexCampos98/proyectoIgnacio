@@ -8,6 +8,7 @@ package proyectoignacio;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
+import proyectocad.Entrenamiento;
 import proyectocad.ExcepcionProyecto;
 import proyectocad.ProyectoCAD;
 import proyectocad.Usuario;
@@ -275,10 +276,10 @@ public class MenuUsuario
             //TODO terminar de poner bien la salida de los datos del usuario.
             if (usu.getIdUsuario() != null)
             {                
-                System.out.printf("%-15s%-30s%-15s%-20s%-21s%-15s%-27s%-1s\n", "Id_usuario", "Correo", "Nombre", "Primer apellido", 
-                "Segundo apellido", "Telefono", "Telefono de emergencia", "NickName");
+                System.out.printf("%10s%40s%25s%25s%25s%15s%25s%25s\n", "Id_usuario", "Correo", "Nombre", "Primer apellido", 
+                "Segundo apellido", "Telefono", "Telefono Emergencia", "NickName");
                 
-                System.out.printf("%-15s%-30s%-15s%-20s%-21s%-15s%-27s%-1s\n", usu.getIdUsuario(), usu.getCorreo(), usu.getNombre(), usu.getApellido1(), 
+                System.out.printf("%10s%40s%25s%25s%25s%15s%25s%25s\n", usu.getIdUsuario(), usu.getCorreo(), usu.getNombre(), usu.getApellido1(), 
                 usu.getApellido2(), usu.getTelefono(), usu.getTelefonoEmergencia(), usu.getNombreUsuario());
                 
             } else
@@ -310,13 +311,13 @@ public class MenuUsuario
             ArrayList<Usuario> usuarios = cAD.leerUsuarios();
             Iterator<Usuario> iteraUsu = usuarios.iterator();
             
-            System.out.printf("%-15s%-30s%-15s%-20s%-21s%-15s%-27s%-1s\n", "Id_usuario", "Correo", "Nombre", "Primer apellido", 
-                "Segundo apellido", "Telefono", "Telefono de emergencia", "NickName");
+            System.out.printf("%10s%40s%25s%25s%25s%15s%25s%25s\n", "Id_usuario", "Correo", "Nombre", "Primer apellido", 
+                "Segundo apellido", "Telefono", "Telefono Emergencia", "NickName");
             
             while(iteraUsu.hasNext())
             {
                 Usuario usu = iteraUsu.next();
-                System.out.printf("%-15s%-30s%-15s%-20s%-21s%-15s%-27s%-1s\n", usu.getIdUsuario(), usu.getCorreo(), usu.getNombre(), usu.getApellido1(), 
+                System.out.printf("%10s%40s%25s%25s%25s%15s%25s%25s\n", usu.getIdUsuario(), usu.getCorreo(), usu.getNombre(), usu.getApellido1(), 
                 usu.getApellido2(), usu.getTelefono(), usu.getTelefonoEmergencia(), usu.getNombreUsuario());
             }
         } catch (ExcepcionProyecto ex)

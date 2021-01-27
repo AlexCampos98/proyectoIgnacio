@@ -7,7 +7,9 @@ package proyectoignacio;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -315,7 +317,12 @@ public class MenuEntrenamiento
             //TODO terminar de poner bien la salida de los datos del usuario.
             if (entrenamiento.getIdEntrenamiento() != null)
             {
-                System.out.println(entrenamiento.toString());
+                System.out.printf("%16s%20s%20s%20s%20s%20s%20s%20s\n", "Id Entrenamiento", "Nombre", "Fecha", "Nº plazas", 
+                "Id Entrenador", "Entrenador", "Id Deportista", "Deportista");
+                
+                System.out.printf("%16d%20s%20tD%20d%20d%20s%20d%20s\n", entrenamiento.getIdEntrenamiento(), entrenamiento.getNombre(), entrenamiento.getFecha(), entrenamiento.getPlazas(), 
+                entrenamiento.getIdUsuarioEntrenador().getIdUsuario(), entrenamiento.getIdUsuarioEntrenador().getNombreUsuario(), entrenamiento.getIdUsuarioDeportista().getIdUsuario(), 
+                entrenamiento.getIdUsuarioDeportista().getNombreUsuario());
             } else
             {
                 System.out.println("El entrenamiento no existe.");
@@ -342,6 +349,22 @@ public class MenuEntrenamiento
         {
             ProyectoCAD cAD = new ProyectoCAD();
             System.out.println(cAD.leerEntrenamientos());
+            
+            System.out.printf("%16s%20s%20s%20s%20s%20s%20s%20s\n", "Id Entrenamiento", "Nombre", "Fecha", "Nº plazas", 
+                "Id Entrenador", "Entrenador", "Id Deportista", "Deportista");
+            
+            ArrayList<Entrenamiento> entrenamientos = cAD.leerEntrenamientos();
+            Iterator<Entrenamiento> iteraEntre = entrenamientos.iterator();
+            
+            while(iteraEntre.hasNext())
+            {
+                Entrenamiento entrenamiento = iteraEntre.next();
+                System.out.printf("%16d%20s%20tD%20d%20d%20s%20d%20s\n", entrenamiento.getIdEntrenamiento(), entrenamiento.getNombre(), entrenamiento.getFecha(), entrenamiento.getPlazas(), 
+                entrenamiento.getIdUsuarioEntrenador().getIdUsuario(), entrenamiento.getIdUsuarioEntrenador().getNombreUsuario(), entrenamiento.getIdUsuarioDeportista().getIdUsuario(), 
+                entrenamiento.getIdUsuarioDeportista().getNombreUsuario());
+            }
+                
+            
         } catch (ExcepcionProyecto ex)
         {
             String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL();

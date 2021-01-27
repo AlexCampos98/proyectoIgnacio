@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import proyectocad.Entrenamiento;
 import proyectocad.ExcepcionProyecto;
 import proyectocad.ProyectoCAD;

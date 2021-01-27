@@ -8,7 +8,6 @@ package proyectoignacio;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
-import proyectocad.Entrenamiento;
 import proyectocad.ExcepcionProyecto;
 import proyectocad.ProyectoCAD;
 import proyectocad.Usuario;

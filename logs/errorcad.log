@@ -1,0 +1,16 @@
+2021-01-28 16:57:43,452   ERROR - Codigo de error: 1
+Mensaje para el administrador: ORA-00001: restricción única (PROYECTO.SYS_C005467) violada
+Sentencia SQL utilizada: INSERT INTO usuario (id_usuario, correo, nombre, apellido1, apellido2, telefono, telefonoEmergencia, nombreUsuario) VALUES (sequence_usuario.NEXTVAL,?,?,?,?,?,?,?)
+
+2021-01-28 17:21:47,183   ERROR - Codigo de error: 12899
+Mensaje para el administrador: ORA-12899: el valor es demasiado grande para la columna "PROYECTO"."USUARIO"."NOMBRE" (real: 31, máximo: 30)
+Sentencia SQL utilizada: INSERT INTO usuario (id_usuario, correo, nombre, apellido1, apellido2, telefono, telefonoEmergencia, nombreUsuario) VALUES (sequence_usuario.NEXTVAL,?,?,?,?,?,?,?)
+
+2021-01-28 18:00:03,032   TRACE - Trazada: Menu principal.
+
+2021-01-28 18:00:36,358   TRACE - Trazada: Menu de insercion de datos.
+
+2021-01-28 18:00:49,100   TRACE - Trazada: Menu principal.
+
+2021-01-28 18:00:58,560   TRACE - Trazada: Finalizacion de la aplicacion.
+

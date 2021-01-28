@@ -26,8 +26,8 @@ public class Logs
         loggerERROR.error(error);
     }
     
-    public void logTrace()
+    public void logTrace(String trace)
     {
-        //TODO
+        loggerERROR.trace(trace + "\n");
     }
 }

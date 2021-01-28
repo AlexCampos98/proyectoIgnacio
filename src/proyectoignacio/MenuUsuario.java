@@ -32,33 +32,57 @@ public class MenuUsuario
         System.out.print("Vamos a introducir los siguientes datos para la creacion del usuario:\nIntroduce "
                 + "el correo: ");
         correo = entradaDatos.nextLine();
-        while (!esCorreo(correo))
+        while (!esCorreo(correo) || correo.length() > 320)
         {
-            System.out.print("Dato erróneo. Introduce de nuevo el correo (____@____.___): ");
+            if (correo.length() > 320)
+            {
+                System.out.println("Has pasado el limite de 320 letras. Introduce de nuevo el correo (____@____.___): ");
+            } else
+            {
+                System.out.print("Dato erróneo. Introduce de nuevo el correo (____@____.___): ");
+            }
             correo = entradaDatos.nextLine();
         }
 
         System.out.print("Introduce el nombre: ");
         nombre = entradaDatos.nextLine();
-        while (nombre.equals(""))
+        while (nombre.equals("") || nombre.length() > 30)
         {
-            System.out.print("No has introducido ningun nombre. Introduce de nuevo el nombre: ");
+            if (nombre.length() > 30)
+            {
+                System.out.println("Has pasado el limite de 30 letras. Introduce de nuevo el nombre: ");
+            } else
+            {
+                System.out.print("No has introducido ningun nombre. Introduce de nuevo el nombre: ");
+            }
             nombre = entradaDatos.nextLine();
         }
 
         System.out.print("Introduce el primer apellido: ");
         apellido1 = entradaDatos.nextLine();
-        while (apellido1.equals(""))
+        while (apellido1.equals("") || apellido1.length() > 50)
         {
-            System.out.print("No has introducido ningun apellido. Introduce de nuevo el primer apellido: ");
+            if (apellido1.length() > 50)
+            {
+                System.out.println("Has pasado el limite de 50 letras. Introduce de nuevo el primer apellido: ");
+            } else
+            {
+                System.out.print("No has introducido ningun apellido. Introduce de nuevo el primer apellido: ");
+            }
             apellido1 = entradaDatos.nextLine();
         }
 
         System.out.print("Introduce el segundo apellido: ");
         apellido2 = entradaDatos.nextLine();
-        while (apellido2.equals(""))
+        while (apellido2.equals("") || apellido2.length() > 50)
         {
-            System.out.print("No has introducido ningun apellido. Introduce de nuevo el segundo apellido: ");
+            if (apellido2.length() > 50)
+            {
+                System.out.println("Has pasado el limite de 50 letras. Introduce de nuevo el segundo apellido: ");
+            } else
+            {
+                System.out.print("No has introducido ningun apellido. Introduce de nuevo el segundo apellido: ");
+            }
             apellido2 = entradaDatos.nextLine();
         }
 
@@ -67,7 +91,7 @@ public class MenuUsuario
 
         while (!esEntero(telefono) || telefono.length() != 9)
         {
-            System.out.print("Dato erróneo. Introduce de nuevo el numero de telefono: ");
+            System.out.print("Dato erróneo. Introduce de nuevo el numero de telefono (9 numeros): ");
             telefono = entradaDatos.nextLine();
         }
 
@@ -76,15 +100,21 @@ public class MenuUsuario
 
         while (!esEntero(telefonoEmergencia) || telefonoEmergencia.length() != 9)
         {
-            System.out.print("Dato erróneo. Introduce de nuevo el numero de telefono de emergencia: ");
+            System.out.print("Dato erróneo. Introduce de nuevo el numero de telefono de emergencia (9 numeros): ");
             telefonoEmergencia = entradaDatos.nextLine();
         }
 
         System.out.print("Introduce el nombre que se mostrará en la aplicacion: ");
         nombreUsuario = entradaDatos.nextLine();
-        while (nombreUsuario.equals(""))
+        while (nombreUsuario.equals("") || nombreUsuario.length() > 20)
         {
-            System.out.print("No has introducido ningun nombre. Introduce de nuevo el nombre que se mostrará en la aplicacion: ");
+            if (nombreUsuario.length() > 20)
+            {
+                System.out.println("Has pasado el limite de 20 letras. Introduce de nuevo el nombre que se mostrará en la aplicacion: ");
+            } else
+            {
+                System.out.print("No has introducido ningun nombre. Introduce de nuevo el nombre que se mostrará en la aplicacion: ");
+            }
             nombreUsuario = entradaDatos.nextLine();
         }
 
@@ -151,7 +181,8 @@ public class MenuUsuario
         Usuario usu;
 
         System.out.println("MODIFICACION DE UN USUARIO");
-        System.out.print("Para poder modificacar un usuario, es necesario la siguiente informacion.\nIntroduce el identificador del usuario a modificar: ");
+        System.out.print("Para poder modificacar un usuario, es necesario la siguiente informacion.\n\nIMPORTANTE se mostrara la informacion del usuario"
+                + " entre parentesis, si desea no cambiarla presione la tecla ENTER.\nIntroduce el identificador del usuario a modificar: ");
 
         idUsuario = entradaDatos.nextLine();
         while (!esEntero(idUsuario) || idUsuario.length() > 5 || Integer.parseInt(idUsuario) < 0)
@@ -166,63 +197,139 @@ public class MenuUsuario
             usu = cAD.leerUsuario(Integer.parseInt(idUsuario));
             if (usu.getIdUsuario() != null)
             {
-                System.out.println("Introduce el correo (" + usu.getCorreo() + "): ");
+                System.out.print("Introduce el correo (" + usu.getCorreo() + "): ");
 
                 correo = entradaDatos.nextLine();
-                while (!esCorreo(correo))
+                if (correo.equals(""))
                 {
-                    System.out.print("Dato erróneo. Introduce de nuevo el correo (____@____.___): ");
-                    correo = entradaDatos.nextLine();
+                    correo = usu.getCorreo();
+                } else
+                {
+                    while (!esCorreo(correo) || correo.length() > 320)
+                    {
+                        if (correo.length() > 320)
+                        {
+                            System.out.println("Has pasado el limite de 320 letras. Introduce de nuevo el correo (____@____.___): ");
+                        } else
+                        {
+                            System.out.print("Dato erróneo. Introduce de nuevo el correo (____@____.___): ");
+                        }
+                        correo = entradaDatos.nextLine();
+                    }
                 }
 
                 System.out.print("Introduce el nombre (" + usu.getNombre() + "): ");
                 nombre = entradaDatos.nextLine();
-                while (nombre.equals(""))
+
+                if (nombre.equals(""))
                 {
-                    System.out.print("No has introducido ningun nombre. Introduce de nuevo el nombre: ");
-                    nombre = entradaDatos.nextLine();
+                    nombre = usu.getNombre();
+                } else
+                {
+                    while (nombre.equals("") || nombre.length() > 30)
+                    {
+                        if (nombre.length() > 30)
+                        {
+                            System.out.println("Has pasado el limite de 30 letras. Introduce de nuevo el nombre: ");
+                        } else
+                        {
+                            System.out.print("No has introducido ningun nombre. Introduce de nuevo el nombre: ");
+                        }
+                        nombre = entradaDatos.nextLine();
+                    }
                 }
 
                 System.out.print("Introduce el primer apellido (" + usu.getApellido1() + "): ");
                 apellido1 = entradaDatos.nextLine();
-                while (apellido1.equals(""))
+
+                if (apellido1.equals(""))
                 {
-                    System.out.print("No has introducido ningun apellido. Introduce de nuevo el primer apellido: ");
-                    apellido1 = entradaDatos.nextLine();
+                    apellido1 = usu.getApellido1();
+                } else
+                {
+                    while (apellido1.equals("") || apellido1.length() > 50)
+                    {
+                        if (apellido1.length() > 50)
+                        {
+                            System.out.println("Has pasado el limite de 50 letras. Introduce de nuevo el primer apellido: ");
+                        } else
+                        {
+                            System.out.print("No has introducido ningun apellido. Introduce de nuevo el primer apellido: ");
+                        }
+                        apellido1 = entradaDatos.nextLine();
+                    }
                 }
 
                 System.out.print("Introduce el segundo apellido (" + usu.getApellido2() + "): ");
                 apellido2 = entradaDatos.nextLine();
-                while (apellido2.equals(""))
+
+                if (apellido2.equals(""))
                 {
-                    System.out.print("No has introducido ningun apellido. Introduce de nuevo el segundo apellido: ");
-                    apellido2 = entradaDatos.nextLine();
+                    apellido2 = usu.getApellido2();
+                } else
+                {
+                    while (apellido2.equals("") || apellido2.length() > 50)
+                    {
+                        if (apellido2.length() > 50)
+                        {
+                            System.out.println("Has pasado el limite de 50 letras. Introduce de nuevo el segundo apellido: ");
+                        } else
+                        {
+                            System.out.print("No has introducido ningun apellido. Introduce de nuevo el segundo apellido: ");
+                        }
+                        apellido2 = entradaDatos.nextLine();
+                    }
                 }
 
                 System.out.print("Introduce el numero de telefono (" + usu.getTelefono() + "): ");
                 telefono = entradaDatos.nextLine();
 
-                while (!esEntero(telefono) || telefono.length() != 9)
+                if (telefono.equals(""))
                 {
-                    System.out.print("Dato erróneo. Introduce de nuevo el numero de telefono: ");
-                    telefono = entradaDatos.nextLine();
+                    telefono = usu.getTelefono();
+                } else
+                {
+                    while (!esEntero(telefono) || telefono.length() != 9)
+                    {
+                        System.out.print("Dato erróneo. Introduce de nuevo el numero de telefono: ");
+                        telefono = entradaDatos.nextLine();
+                    }
                 }
 
                 System.out.print("Introduce el numero de telefono de emergencia (" + usu.getTelefonoEmergencia() + "): ");
                 telefonoEmergencia = entradaDatos.nextLine();
 
-                while (!esEntero(telefonoEmergencia) || telefonoEmergencia.length() != 9)
+                if (telefonoEmergencia.equals(""))
                 {
-                    System.out.print("Dato erróneo. Introduce de nuevo el numero de telefono de emergencia: ");
-                    telefonoEmergencia = entradaDatos.nextLine();
+                    telefonoEmergencia = usu.getTelefonoEmergencia();
+                } else
+                {
+                    while (!esEntero(telefonoEmergencia) || telefonoEmergencia.length() != 9)
+                    {
+                        System.out.print("Dato erróneo. Introduce de nuevo el numero de telefono de emergencia: ");
+                        telefonoEmergencia = entradaDatos.nextLine();
+                    }
                 }
 
                 System.out.print("Introduce el nombre que se mostrará en la aplicacion (" + usu.getNombreUsuario() + "): ");
                 nombreUsuario = entradaDatos.nextLine();
-                while (nombreUsuario.equals(""))
+
+                if (nombreUsuario.equals(""))
                 {
-                    System.out.print("No has introducido ningun nombre. Introduce de nuevo el nombre que se mostrará en la aplicacion: ");
-                    nombreUsuario = entradaDatos.nextLine();
+                    nombreUsuario = usu.getNombreUsuario();
+                } else
+                {
+                    while (nombreUsuario.equals("") || nombreUsuario.length() > 20)
+                    {
+                        if (nombreUsuario.length() > 20)
+                        {
+                            System.out.println("Has pasado el limite de 20 letras. Introduce de nuevo el nombre que se mostrará en la aplicacion: ");
+                        } else
+                        {
+                            System.out.print("No has introducido ningun nombre. Introduce de nuevo el nombre que se mostrará en la aplicacion: ");
+                        }
+                        nombreUsuario = entradaDatos.nextLine();
+                    }
                 }
 
                 usu = new Usuario(Integer.parseInt(idUsuario), correo, nombre, apellido1, apellido2, telefono, telefonoEmergencia, nombreUsuario);
@@ -265,10 +372,8 @@ public class MenuUsuario
         try
         {
             ProyectoCAD cAD = new ProyectoCAD();
-            //ProyectoCAD cAD = new ProyectoCAD("172.16.209.69", "proyecto", "kk");
             usu = cAD.leerUsuario(Integer.parseInt(idUsuario));
 
-            //TODO terminar de poner bien la salida de los datos del usuario.
             if (usu.getIdUsuario() != null)
             {
                 System.out.printf("%10s%40s%25s%25s%25s%15s%25s%25s\n", "Id_usuario", "Correo", "Nombre", "Primer apellido",
@@ -299,11 +404,9 @@ public class MenuUsuario
         Scanner espera = new Scanner(System.in);
         System.out.println("MENU DE INFORMACION DE TODOS LOS USUARIOS");
 
-        //TODO hacer que los datos obtenidos se pongan decentemente.
         try
         {
             ProyectoCAD cAD = new ProyectoCAD();
-//            ProyectoCAD cAD = new ProyectoCAD("172.16.209.69", "proyecto", "kk");
             ArrayList<Usuario> usuarios = cAD.leerUsuarios();
             Iterator<Usuario> iteraUsu = usuarios.iterator();
 

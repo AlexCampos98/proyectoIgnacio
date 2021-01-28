@@ -42,18 +42,24 @@ public class MenuEntrenamiento
 
             System.out.print("Introduce el nombre del entrenamiento: ");
             nombre = entradaDatos.nextLine();
-            while (nombre.equals(""))
+            while (nombre.equals("") || nombre.length() > 30)
             {
-                System.out.print("No has introducido ningun nombre. Introduce de nuevo el nombre del entrenamiento: ");
+                if (nombre.length() > 30)
+                {
+                    System.out.print("El nombre introducido supera el limite de 30 caracteres. Introduce de nuevo el nombre del entrenamiento: ");
+                } else
+                {
+                    System.out.print("No has introducido ningun nombre. Introduce de nuevo el nombre del entrenamiento: ");
+                }
                 nombre = entradaDatos.nextLine();
             }
 
             System.out.print("Introduce el numero de plazas abiertas: ");
             plazas = entradaDatos.nextLine();
 
-            while (!esEntero(plazas) || plazas.length() > 999)
+            while (!esEntero(plazas) || Integer.parseInt(plazas) > 999 || Integer.parseInt(plazas) < 0)
             {
-                System.out.print("Dato erróneo. Introduce de nuevo el numero de plazas: ");
+                System.out.print("Dato erróneo. Introduce de nuevo el numero de plazas (limite de 999): ");
                 plazas = entradaDatos.nextLine();
             }
 
@@ -69,7 +75,7 @@ public class MenuEntrenamiento
             System.out.print("Introduce el identificador del entrenador: ");
             id_usuario_entrenador = entradaDatos.nextLine();
 
-            while (!esEntero(id_usuario_entrenador) || id_usuario_entrenador.length() > 99999 || Integer.parseInt(id_usuario_entrenador) < 0)
+            while (!esEntero(id_usuario_entrenador) || id_usuario_entrenador.length() > 3 || Integer.parseInt(id_usuario_entrenador) < 0)
             {
                 System.out.print("Dato erróneo. Introduce de nuevo el identificador del entrenador: ");
                 id_usuario_entrenador = entradaDatos.nextLine();
@@ -81,7 +87,7 @@ public class MenuEntrenamiento
                 if (usuEntre.getIdUsuario() == null)
                 {
                     System.out.println("El usuario selecionado no existe.");
-                    while (!esEntero(id_usuario_entrenador) || id_usuario_entrenador.length() > 99999 || Integer.parseInt(id_usuario_entrenador) < 0)
+                    while (!esEntero(id_usuario_entrenador) || id_usuario_entrenador.length() > 3 || Integer.parseInt(id_usuario_entrenador) < 0)
                     {
                         System.out.print("Dato erróneo. Introduce de nuevo el identificador del entrenador: ");
                         id_usuario_entrenador = entradaDatos.nextLine();
@@ -92,7 +98,7 @@ public class MenuEntrenamiento
             System.out.print("Introduce el identificador del deportista: ");
             id_usuario_deportista = entradaDatos.nextLine();
 
-            while (!esEntero(id_usuario_deportista) || id_usuario_deportista.length() > 99999 || Integer.parseInt(id_usuario_deportista) < 0)
+            while (!esEntero(id_usuario_deportista) || id_usuario_deportista.length() > 3 || Integer.parseInt(id_usuario_deportista) < 0)
             {
                 System.out.print("Dato erróneo. Introduce de nuevo el identificador del entrenador: ");
                 id_usuario_deportista = entradaDatos.nextLine();
@@ -104,7 +110,7 @@ public class MenuEntrenamiento
                 if (usuDepor.getIdUsuario() == null)
                 {
                     System.out.println("El usuario selecionado no existe.");
-                    while (!esEntero(id_usuario_deportista) || id_usuario_deportista.length() > 99999 || Integer.parseInt(id_usuario_deportista) < 0)
+                    while (!esEntero(id_usuario_deportista) || id_usuario_deportista.length() > 3 || Integer.parseInt(id_usuario_deportista) < 0)
                     {
                         System.out.print("Dato erróneo. Introduce de nuevo el identificador del entrenador: ");
                         id_usuario_deportista = entradaDatos.nextLine();
@@ -117,7 +123,7 @@ public class MenuEntrenamiento
             Entrenamiento entrenamiento = new Entrenamiento(null, Integer.parseInt(plazas), nombre, fechaSql, usuEntre, usuDepor);
             cAD.insertarEntrenamiento(entrenamiento);
 
-            System.out.println("Los datos han sido guardados.");
+            System.out.println("Se ha creado correctamente el entrenamiento.");
         } catch (ExcepcionProyecto ex)
         {
             String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL() + "\n";
@@ -182,7 +188,8 @@ public class MenuEntrenamiento
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         System.out.println("MODIFICACION DE UN ENTRENAMIENTO");
-        System.out.print("Para poder modificar un entrenamiento, es necesario la siguiente informacion.\nIntroduce el identificador del entrenamiento a modificar: ");
+        System.out.print("Para poder modificar un entrenamiento, es necesario la siguiente informacion.\n\nIMPORTANTE se mostrara la informacion del entrenamiento"
+                + " entre parentesis, si desea no cambiarla presione la tecla ENTER.\nIntroduce el identificador del entrenamiento a modificar: ");
         idEntrenamiento = entradaDatos.nextLine();
 
         while (!esEntero(idEntrenamiento) || idEntrenamiento.length() > 5 || Integer.parseInt(idEntrenamiento) < 0)
@@ -198,39 +205,64 @@ public class MenuEntrenamiento
             entrenamiento = cAD.leerEntrenamiento(Integer.parseInt(idEntrenamiento));
             if (entrenamiento.getIdEntrenamiento() != null)
             {
-                System.out.print("Introduce el nombre del entrenamiento: ");
+                System.out.print("Introduce el nombre del entrenamiento (" + entrenamiento.getNombre() + "): ");
                 nombre = entradaDatos.nextLine();
-                while (nombre.equals(""))
+
+                if (nombre.equals(""))
                 {
-                    System.out.print("No has introducido ningun nombre. Introduce de nuevo el nombre del entrenamiento: ");
-                    nombre = entradaDatos.nextLine();
+                    nombre = entrenamiento.getNombre();
+                } else
+                {
+                    while (nombre.equals("") || nombre.length() > 30)
+                    {
+                        System.out.print("No has introducido ningun nombre. Introduce de nuevo el nombre del entrenamiento: ");
+                        nombre = entradaDatos.nextLine();
+                    }
                 }
 
-                System.out.print("Introduce el numero de plazas abiertas: ");
+                System.out.print("Introduce el numero de plazas abiertas (" + entrenamiento.getPlazas() + "): ");
                 plazas = entradaDatos.nextLine();
 
-                while (!esEntero(plazas) || plazas.length() > 999)
+                if (plazas.equals(""))
                 {
-                    System.out.print("Dato erróneo. Introduce de nuevo el numero de plazas: ");
-                    plazas = entradaDatos.nextLine();
+                    plazas = Integer.toString(entrenamiento.getPlazas());
+                } else
+                {
+                    while (!esEntero(plazas) || Integer.parseInt(plazas) > 999 || Integer.parseInt(plazas) < 0)
+                    {
+                        System.out.print("Dato erróneo. Introduce de nuevo el numero de plazas: ");
+                        plazas = entradaDatos.nextLine();
+                    }
                 }
 
-                System.out.print("Introduce la fecha del entrenamiento: ");
+                System.out.print("Introduce la fecha del entrenamiento (" + entrenamiento.getFecha() + "): ");
                 fecha = entradaDatos.nextLine();
 
-                while (!esFecha(fecha))
+                if (fecha.equals(""))
                 {
-                    System.out.print("Dato erróneo. Introduce de nuevo la fecha del entrenamiento (yyyy-MM-dd): ");
-                    fecha = entradaDatos.nextLine();
+                    fecha = entrenamiento.getFecha() + "";
+                } else
+                {
+                    while (!esFecha(fecha))
+                    {
+                        System.out.print("Dato erróneo. Introduce de nuevo la fecha del entrenamiento (yyyy-MM-dd): ");
+                        fecha = entradaDatos.nextLine();
+                    }
                 }
 
-                System.out.print("Introduce el identificador del entrenador: ");
+                System.out.print("Introduce el identificador del entrenador (" + entrenamiento.getIdUsuarioEntrenador().getIdUsuario() + "): ");
                 id_usuario_entrenador = entradaDatos.nextLine();
 
-                while (!esEntero(id_usuario_entrenador) || id_usuario_entrenador.length() > 99999 || Integer.parseInt(id_usuario_entrenador) < 0)
+                if (id_usuario_entrenador.equals(""))
                 {
-                    System.out.print("Dato erróneo. Introduce de nuevo el identificador del entrenador: ");
-                    id_usuario_entrenador = entradaDatos.nextLine();
+                    id_usuario_entrenador = Integer.toString(entrenamiento.getIdUsuarioEntrenador().getIdUsuario());
+                } else
+                {
+                    while (!esEntero(id_usuario_entrenador) || id_usuario_entrenador.length() > 5 || Integer.parseInt(id_usuario_entrenador) < 0)
+                    {
+                        System.out.print("Dato erróneo. Introduce de nuevo el identificador del entrenador: ");
+                        id_usuario_entrenador = entradaDatos.nextLine();
+                    }
                 }
 
                 do
@@ -239,7 +271,7 @@ public class MenuEntrenamiento
                     if (usuEntre.getIdUsuario() == null)
                     {
                         System.out.println("El usuario selecionado no existe.");
-                        while (!esEntero(id_usuario_entrenador) || id_usuario_entrenador.length() > 99999 || Integer.parseInt(id_usuario_entrenador) < 0)
+                        while (!esEntero(id_usuario_entrenador) || id_usuario_entrenador.length() > 5 || Integer.parseInt(id_usuario_entrenador) < 0)
                         {
                             System.out.print("Dato erróneo. Introduce de nuevo el identificador del entrenador: ");
                             id_usuario_entrenador = entradaDatos.nextLine();
@@ -247,13 +279,19 @@ public class MenuEntrenamiento
                     }
                 } while (usuEntre.getIdUsuario() == null);
 
-                System.out.print("Introduce el identificador del deportista: ");
+                System.out.print("Introduce el identificador del deportista (" + entrenamiento.getIdUsuarioDeportista().getIdUsuario() + "): ");
                 id_usuario_deportista = entradaDatos.nextLine();
 
-                while (!esEntero(id_usuario_deportista) || id_usuario_deportista.length() > 99999 || Integer.parseInt(id_usuario_deportista) < 0)
+                if (id_usuario_deportista.equals(""))
                 {
-                    System.out.print("Dato erróneo. Introduce de nuevo el identificador del entrenador: ");
-                    id_usuario_deportista = entradaDatos.nextLine();
+                    id_usuario_deportista = Integer.toString(entrenamiento.getIdUsuarioDeportista().getIdUsuario());
+                } else
+                {
+                    while (!esEntero(id_usuario_deportista) || id_usuario_deportista.length() > 5 || Integer.parseInt(id_usuario_deportista) < 0)
+                    {
+                        System.out.print("Dato erróneo. Introduce de nuevo el identificador del entrenador: ");
+                        id_usuario_deportista = entradaDatos.nextLine();
+                    }
                 }
 
                 do
@@ -262,7 +300,7 @@ public class MenuEntrenamiento
                     if (usuDepor.getIdUsuario() == null)
                     {
                         System.out.println("El usuario selecionado no existe.");
-                        while (!esEntero(id_usuario_deportista) || id_usuario_deportista.length() > 99999 || Integer.parseInt(id_usuario_deportista) < 0)
+                        while (!esEntero(id_usuario_deportista) || id_usuario_deportista.length() > 5 || Integer.parseInt(id_usuario_deportista) < 0)
                         {
                             System.out.print("Dato erróneo. Introduce de nuevo el identificador del entrenador: ");
                             id_usuario_deportista = entradaDatos.nextLine();
@@ -316,7 +354,6 @@ public class MenuEntrenamiento
             ProyectoCAD cAD = new ProyectoCAD();
             entrenamiento = cAD.leerEntrenamiento(Integer.parseInt(idEntrenamiento));
 
-            //TODO terminar de poner bien la salida de los datos del usuario.
             if (entrenamiento.getIdEntrenamiento() != null)
             {
                 System.out.printf("%16s%20s%20s%20s%20s%20s%20s%20s\n", "Id Entrenamiento", "Nombre", "Fecha", "Nº plazas",
@@ -347,7 +384,6 @@ public class MenuEntrenamiento
         Scanner espera = new Scanner(System.in);
         System.out.println("MENU DE INFORMACION DE TODOS LOS ENTRENAMIENTOS");
 
-        //TODO hacer que los datos obtenidos se pongan decentemente.
         try
         {
             ProyectoCAD cAD = new ProyectoCAD();

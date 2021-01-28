@@ -20,11 +20,13 @@ import proyectocad.ProyectoCAD;
 public class main
 {
 
+    private static final Logs log = new Logs();
+
     public static void main(String[] args)
     {
         Scanner entradaDatos = new Scanner(System.in);
         String opcionMenu;
-        
+
         try
         {
             /*
@@ -35,11 +37,10 @@ public class main
             *   Contraseña: kk
             *
             *   Es posible eliminar este try/catch, esto hara que se usen los parametros por defecto.
-            */
+             */
             ProyectoCAD cAD = new ProyectoCAD("192.168.1.125", "proyecto", "kk");
         } catch (ExcepcionProyecto ex)
         {
-            Logs log = new Logs();
             String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL() + "\n";
             log.logCAD(error);
 
@@ -50,6 +51,7 @@ public class main
 
         do
         {
+            log.logTrace("Trazada: Menu principal.");
             System.out.print("MENU PRINCIPAL\nOpcion 1: Crear un nuevo usuario o un entrenamiento.\nOpcion 2: Modificar un usuario o un entrenamiento.\nOpcion 3: Eliminar un usuario o un entrenamiento."
                     + "\nOpcion 4: Obtener la informacion de usuario/s o de entrenamiento/s.\nOpcion 5: Salir de la aplicacion.\nIntroduce el numero de la opcion a elegir: ");
             opcionMenu = entradaDatos.nextLine();
@@ -61,12 +63,13 @@ public class main
             }
 
             System.out.println("\n\n\n\n\n\n\n");
-            
+
             switch (opcionMenu)
             {
                 case "1":
-                    System.out.println("MENU INSERCION DE DATOS.\nOpcion 1: Introducir un usuario\nOpcion 2: "
-                            + "Introducir un entrenamiento\nOpcion 3: Atras\nIntroduce el numero de la opcion a elegir: ");
+                    log.logTrace("Trazada: Menu de insercion de datos.");
+                    System.out.println("MENU INSERCION DE DATOS.\nOpcion 1: Crear un usuario\nOpcion 2: "
+                            + "Crear un entrenamiento\nOpcion 3: Atras\nIntroduce el numero de la opcion a elegir: ");
                     opcionMenu = entradaDatos.nextLine();
                     while (!opcionMenu.matches("-?\\d+") || !esEntero(opcionMenu) || Integer.parseInt(opcionMenu) > 3 || Integer.parseInt(opcionMenu) < 0)
                     {
@@ -77,11 +80,13 @@ public class main
                     switch (opcionMenu)
                     {
                         case "1":
+                            log.logTrace("Trazada: Menu de insercion de datos del usuario.");
                             MenuUsuario menuUsuario = new MenuUsuario();
                             menuUsuario.menuInsercion(entradaDatos);
                             break;
 
                         case "2":
+                            log.logTrace("Trazada: Menu de insercion de datos del entrenamiento.");
                             MenuEntrenamiento menuEntrenamiento = new MenuEntrenamiento();
                             menuEntrenamiento.menuInsercion(entradaDatos);
                             break;
@@ -92,6 +97,7 @@ public class main
                     break;
 
                 case "2":
+                    log.logTrace("Trazada: Menu de modificacion de datos.");
                     System.out.println("MENU MODIFICACION DE INFORMACION.\nOpcion 1: Modificar un usuario\nOpcion 2: "
                             + "Modificar un entrenamiento\nOpcion 3: Atras\nIntroduce el numero de la opcion a elegir: ");
                     opcionMenu = entradaDatos.nextLine();
@@ -104,11 +110,13 @@ public class main
                     switch (opcionMenu)
                     {
                         case "1":
+                            log.logTrace("Trazada: Menu de modificacion de datos del usuario.");
                             MenuUsuario menuUsuario = new MenuUsuario();
                             menuUsuario.menuModificacion(entradaDatos);
                             break;
 
                         case "2":
+                            log.logTrace("Trazada: Menu de modificacion de datos del entrenamiento.");
                             MenuEntrenamiento menuEntrenamiento = new MenuEntrenamiento();
                             menuEntrenamiento.menuModificacion(entradaDatos);
                             break;
@@ -119,6 +127,7 @@ public class main
                     break;
 
                 case "3":
+                    log.logTrace("Trazada: Menu de eliminacion de datos.");
                     System.out.println("MENU ELIMINACION DE INFORMACION.\nOpcion 1: Eliminar un usuario\nOpcion 2: "
                             + "Eliminar un entrenamiento\nOpcion 3: Atras\nIntroduce el numero de la opcion a elegir: ");
                     opcionMenu = entradaDatos.nextLine();
@@ -131,11 +140,13 @@ public class main
                     switch (opcionMenu)
                     {
                         case "1":
+                            log.logTrace("Trazada: Menu de eliminacion de datos de un usuario.");
                             MenuUsuario menuUsuario = new MenuUsuario();
                             menuUsuario.menuEliminacion(entradaDatos);
                             break;
 
                         case "2":
+                            log.logTrace("Trazada: Menu de eliminacion de datos de un entrenamiento.");
                             MenuEntrenamiento menuEntrenamiento = new MenuEntrenamiento();
                             menuEntrenamiento.menuEliminacion(entradaDatos);
                             break;
@@ -146,6 +157,7 @@ public class main
                     break;
 
                 case "4":
+                    log.logTrace("Trazada: Menu de obtencion de datos.");
                     System.out.println("MENU BUSQUEDA Y OBTENCION DE INFORMACION.\nOpcion 1: Buscar informacion de un usuario\nOpcion 2: "
                             + "Obtener la informacion de todos los usuarios\nOpcion 3: Buscar informacion de un entrenamiento\n"
                             + "Opcion 4: Obtener la informacion de todos los entrenamientos\nOpcion 5: Atras\nIntroduce el numero de la opcion a elegir: ");
@@ -159,21 +171,25 @@ public class main
                     switch (opcionMenu)
                     {
                         case "1":
+                            log.logTrace("Trazada: Menu de obtencion de datos de un usuario.");
                             MenuUsuario menuUsuario = new MenuUsuario();
                             menuUsuario.menuLeer(entradaDatos);
                             break;
 
                         case "2":
+                            log.logTrace("Trazada: Menu de obtencion de datos de todos los usuarios.");
                             MenuUsuario menuUsuario1 = new MenuUsuario();
                             menuUsuario1.menuLeerTodos();
                             break;
 
                         case "3":
+                            log.logTrace("Trazada: Menu de obtencion de datos de un entrenamiento.");
                             MenuEntrenamiento menuEntrenamiento = new MenuEntrenamiento();
                             menuEntrenamiento.menuLeer(entradaDatos);
                             break;
 
                         case "4":
+                            log.logTrace("Trazada: Menu de obtencion de datos de todos los entrenamientos.");
                             MenuEntrenamiento menuEntrenamiento1 = new MenuEntrenamiento();
                             menuEntrenamiento1.menuLeerTodos();
                             break;
@@ -186,6 +202,7 @@ public class main
             System.out.println("\n\n\n\n\n\n\n");
         } while (!opcionMenu.equals("5"));
 
+        log.logTrace("Trazada: Finalizacion de la aplicacion.");
         System.out.println("Has elegido la opcion de salida de la aplicacion. Hasta la vista.");
 
         entradaDatos.close();

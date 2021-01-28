@@ -29,6 +29,7 @@ public class MenuEntrenamiento
 
     public void menuInsercion(Scanner entradaDatos)
     {
+        System.out.println("\n\n\n\n\n\n\n");
         System.out.println("CREACION DE UN ENTRENAMIENTO");
         try
         {
@@ -119,7 +120,7 @@ public class MenuEntrenamiento
             System.out.println("Los datos han sido guardados.");
         } catch (ExcepcionProyecto ex)
         {
-            String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL();
+            String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL() + "\n";
             log.logCAD(error);
 
             System.out.println(ex.getMensajeErrorUsuario());
@@ -135,6 +136,7 @@ public class MenuEntrenamiento
 
     public void menuEliminacion(Scanner entradaDatos)
     {
+        System.out.println("\n\n\n\n\n\n\n");
         String idEntrenamiento;
 
         System.out.println("ELIMINACION DE UN ENTRENAMIENTO");
@@ -159,10 +161,10 @@ public class MenuEntrenamiento
             }
         } catch (ExcepcionProyecto ex)
         {
-            String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL();
+            String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL() + "\n";
             log.logCAD(error);
 
-            System.out.println(ex.getMensajeErrorUsuario());
+            System.err.println(ex.getMensajeErrorUsuario());
         }
 
         System.out.println("Presiona cualquier tecla para volver al menu principal...");
@@ -171,6 +173,7 @@ public class MenuEntrenamiento
 
     public void menuModificacion(Scanner entradaDatos)
     {
+        System.out.println("\n\n\n\n\n\n\n");
         Usuario usuEntre, usuDepor;
         Entrenamiento entrenamiento;
 
@@ -279,10 +282,10 @@ public class MenuEntrenamiento
             }
         } catch (ExcepcionProyecto ex)
         {
-            String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL();
+            String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL() + "\n";
             log.logCAD(error);
 
-            System.out.println(ex.getMensajeErrorUsuario());
+            System.err.println(ex.getMensajeErrorUsuario());
         } catch (ParseException ex)
         {
             String error = "Error ParseException(Date): " + ex.getMessage();
@@ -295,6 +298,7 @@ public class MenuEntrenamiento
 
     public void menuLeer(Scanner entradaDatos)
     {
+        System.out.println("\n\n\n\n\n\n\n");
         String idEntrenamiento;
         Entrenamiento entrenamiento;
         System.out.println("MENU BUSQUEDA DE INFORMACION DE UN ENTRENAMIENTO");
@@ -315,12 +319,12 @@ public class MenuEntrenamiento
             //TODO terminar de poner bien la salida de los datos del usuario.
             if (entrenamiento.getIdEntrenamiento() != null)
             {
-                System.out.printf("%16s%20s%20s%20s%20s%20s%20s%20s\n", "Id Entrenamiento", "Nombre", "Fecha", "Nº plazas", 
-                "Id Entrenador", "Entrenador", "Id Deportista", "Deportista");
-                
-                System.out.printf("%16d%20s%20tD%20d%20d%20s%20d%20s\n", entrenamiento.getIdEntrenamiento(), entrenamiento.getNombre(), entrenamiento.getFecha(), entrenamiento.getPlazas(), 
-                entrenamiento.getIdUsuarioEntrenador().getIdUsuario(), entrenamiento.getIdUsuarioEntrenador().getNombreUsuario(), entrenamiento.getIdUsuarioDeportista().getIdUsuario(), 
-                entrenamiento.getIdUsuarioDeportista().getNombreUsuario());
+                System.out.printf("%16s%20s%20s%20s%20s%20s%20s%20s\n", "Id Entrenamiento", "Nombre", "Fecha", "Nº plazas",
+                        "Id Entrenador", "Entrenador", "Id Deportista", "Deportista");
+
+                System.out.printf("%16d%20s%20tD%20d%20d%20s%20d%20s\n", entrenamiento.getIdEntrenamiento(), entrenamiento.getNombre(), entrenamiento.getFecha(), entrenamiento.getPlazas(),
+                        entrenamiento.getIdUsuarioEntrenador().getIdUsuario(), entrenamiento.getIdUsuarioEntrenador().getNombreUsuario(), entrenamiento.getIdUsuarioDeportista().getIdUsuario(),
+                        entrenamiento.getIdUsuarioDeportista().getNombreUsuario());
             } else
             {
                 System.out.println("El entrenamiento no existe.");
@@ -328,10 +332,10 @@ public class MenuEntrenamiento
 
         } catch (ExcepcionProyecto ex)
         {
-            String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL();
+            String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL() + "\n";
             log.logCAD(error);
 
-            System.out.println(ex.getMensajeErrorUsuario());
+            System.err.println(ex.getMensajeErrorUsuario());
         }
         System.out.println("Presiona cualquier tecla para volver al menu principal...");
         entradaDatos.nextLine();
@@ -339,6 +343,7 @@ public class MenuEntrenamiento
 
     public void menuLeerTodos()
     {
+        System.out.println("\n\n\n\n\n\n\n");
         Scanner espera = new Scanner(System.in);
         System.out.println("MENU DE INFORMACION DE TODOS LOS ENTRENAMIENTOS");
 
@@ -346,29 +351,26 @@ public class MenuEntrenamiento
         try
         {
             ProyectoCAD cAD = new ProyectoCAD();
-            System.out.println(cAD.leerEntrenamientos());
-            
-            System.out.printf("%16s%20s%20s%20s%20s%20s%20s%20s\n", "Id Entrenamiento", "Nombre", "Fecha", "Nº plazas", 
-                "Id Entrenador", "Entrenador", "Id Deportista", "Deportista");
-            
+            System.out.printf("%16s%20s%20s%20s%20s%20s%20s%20s\n", "Id Entrenamiento", "Nombre", "Fecha", "Nº plazas",
+                    "Id Entrenador", "Entrenador", "Id Deportista", "Deportista");
+
             ArrayList<Entrenamiento> entrenamientos = cAD.leerEntrenamientos();
             Iterator<Entrenamiento> iteraEntre = entrenamientos.iterator();
-            
-            while(iteraEntre.hasNext())
+
+            while (iteraEntre.hasNext())
             {
                 Entrenamiento entrenamiento = iteraEntre.next();
-                System.out.printf("%16d%20s%20tD%20d%20d%20s%20d%20s\n", entrenamiento.getIdEntrenamiento(), entrenamiento.getNombre(), entrenamiento.getFecha(), entrenamiento.getPlazas(), 
-                entrenamiento.getIdUsuarioEntrenador().getIdUsuario(), entrenamiento.getIdUsuarioEntrenador().getNombreUsuario(), entrenamiento.getIdUsuarioDeportista().getIdUsuario(), 
-                entrenamiento.getIdUsuarioDeportista().getNombreUsuario());
+                System.out.printf("%16d%20s%20tD%20d%20d%20s%20d%20s\n", entrenamiento.getIdEntrenamiento(), entrenamiento.getNombre(), entrenamiento.getFecha(), entrenamiento.getPlazas(),
+                        entrenamiento.getIdUsuarioEntrenador().getIdUsuario(), entrenamiento.getIdUsuarioEntrenador().getNombreUsuario(), entrenamiento.getIdUsuarioDeportista().getIdUsuario(),
+                        entrenamiento.getIdUsuarioDeportista().getNombreUsuario());
             }
-                
-            
+
         } catch (ExcepcionProyecto ex)
         {
-            String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL();
+            String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL() + "\n";
             log.logCAD(error);
 
-            System.out.println(ex.getMensajeErrorUsuario());
+            System.err.println(ex.getMensajeErrorUsuario());
         }
 
         System.out.println("Presiona cualquier tecla para volver al menu principal...");

@@ -25,6 +25,7 @@ public class MenuUsuario
 
     public void menuInsercion(Scanner entradaDatos)
     {
+        System.out.println("\n\n\n\n\n\n\n");
         String correo, nombre, apellido1, apellido2, telefono, telefonoEmergencia, nombreUsuario;
 
         System.out.println("CREACION DE UN USUARIO");
@@ -96,18 +97,19 @@ public class MenuUsuario
             System.out.println("El usuario se ha creado con exito.");
         } catch (ExcepcionProyecto ex)
         {
-            String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL();
+            String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL() + "\n";
             log.logCAD(error);
 
-            System.out.println(ex.getMensajeErrorUsuario());
+            System.err.println(ex.getMensajeErrorUsuario());
         }
-        
+
         System.out.println("Presiona cualquier tecla para volver al menu principal...");
         entradaDatos.nextLine();
     }
 
     public void menuEliminacion(Scanner entradaDatos)
     {
+        System.out.println("\n\n\n\n\n\n\n");
         String idUsuario;
 
         System.out.println("ELIMINACION DE UN USUARIO");
@@ -132,18 +134,19 @@ public class MenuUsuario
             }
         } catch (ExcepcionProyecto ex)
         {
-            String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL();
+            String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL() + "\n";
             log.logCAD(error);
 
-            System.out.println(ex.getMensajeErrorUsuario());
+            System.err.println(ex.getMensajeErrorUsuario());
         }
-        
+
         System.out.println("Presiona cualquier tecla para volver al menu principal...");
         entradaDatos.nextLine();
     }
 
     public void menuModificacion(Scanner entradaDatos)
     {
+        System.out.println("\n\n\n\n\n\n\n");
         String idUsuario, correo, nombre, apellido1, apellido2, telefono, telefonoEmergencia, nombreUsuario;
         Usuario usu;
 
@@ -224,28 +227,20 @@ public class MenuUsuario
 
                 usu = new Usuario(Integer.parseInt(idUsuario), correo, nombre, apellido1, apellido2, telefono, telefonoEmergencia, nombreUsuario);
 
-                try
-                {
-                    cAD = new ProyectoCAD();
-                    cAD.modificarUsuario(usu);
-                    System.out.println("Se ha modificado el usuario con exito.");
-                } catch (ExcepcionProyecto ex)
-                {
-                    String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL();
-                    log.logCAD(error);
+                cAD = new ProyectoCAD();
+                cAD.modificarUsuario(usu);
+                System.out.println("Se ha modificado el usuario con exito.");
 
-                    System.out.println(ex.getMensajeErrorUsuario());
-                }
             } else
             {
                 System.out.println("El usuario no existe.");
             }
         } catch (ExcepcionProyecto ex)
         {
-            String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL();
+            String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL() + "\n";
             log.logCAD(error);
 
-            System.out.println(ex.getMensajeErrorUsuario());
+            System.err.println(ex.getMensajeErrorUsuario());
         }
 
         System.out.println("Presiona cualquier tecla para volver al menu principal...");
@@ -254,6 +249,7 @@ public class MenuUsuario
 
     public void menuLeer(Scanner entradaDatos)
     {
+        System.out.println("\n\n\n\n\n\n\n");
         String idUsuario;
         Usuario usu;
         System.out.println("MENU BUSQUEDA DE INFORMACION DE UN USUARIO");
@@ -274,13 +270,13 @@ public class MenuUsuario
 
             //TODO terminar de poner bien la salida de los datos del usuario.
             if (usu.getIdUsuario() != null)
-            {                
-                System.out.printf("%10s%40s%25s%25s%25s%15s%25s%25s\n", "Id_usuario", "Correo", "Nombre", "Primer apellido", 
-                "Segundo apellido", "Telefono", "Telefono Emergencia", "NickName");
-                
-                System.out.printf("%10s%40s%25s%25s%25s%15s%25s%25s\n", usu.getIdUsuario(), usu.getCorreo(), usu.getNombre(), usu.getApellido1(), 
-                usu.getApellido2(), usu.getTelefono(), usu.getTelefonoEmergencia(), usu.getNombreUsuario());
-                
+            {
+                System.out.printf("%10s%40s%25s%25s%25s%15s%25s%25s\n", "Id_usuario", "Correo", "Nombre", "Primer apellido",
+                        "Segundo apellido", "Telefono", "Telefono Emergencia", "NickName");
+
+                System.out.printf("%10s%40s%25s%25s%25s%15s%25s%25s\n", usu.getIdUsuario(), usu.getCorreo(), usu.getNombre(), usu.getApellido1(),
+                        usu.getApellido2(), usu.getTelefono(), usu.getTelefonoEmergencia(), usu.getNombreUsuario());
+
             } else
             {
                 System.out.println("El usuario no existe.");
@@ -288,10 +284,10 @@ public class MenuUsuario
 
         } catch (ExcepcionProyecto ex)
         {
-            String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL();
+            String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL() + "\n";
             log.logCAD(error);
 
-            System.out.println(ex.getMensajeErrorUsuario());
+            System.err.println(ex.getMensajeErrorUsuario());
         }
         System.out.println("Presiona cualquier tecla para volver al menu principal...");
         entradaDatos.nextLine();
@@ -299,6 +295,7 @@ public class MenuUsuario
 
     public void menuLeerTodos()
     {
+        System.out.println("\n\n\n\n\n\n\n");
         Scanner espera = new Scanner(System.in);
         System.out.println("MENU DE INFORMACION DE TODOS LOS USUARIOS");
 
@@ -309,22 +306,22 @@ public class MenuUsuario
 //            ProyectoCAD cAD = new ProyectoCAD("172.16.209.69", "proyecto", "kk");
             ArrayList<Usuario> usuarios = cAD.leerUsuarios();
             Iterator<Usuario> iteraUsu = usuarios.iterator();
-            
-            System.out.printf("%10s%40s%25s%25s%25s%15s%25s%25s\n", "Id_usuario", "Correo", "Nombre", "Primer apellido", 
-                "Segundo apellido", "Telefono", "Telefono Emergencia", "NickName");
-            
-            while(iteraUsu.hasNext())
+
+            System.out.printf("%10s%40s%25s%25s%25s%15s%25s%25s\n", "Id_usuario", "Correo", "Nombre", "Primer apellido",
+                    "Segundo apellido", "Telefono", "Telefono Emergencia", "NickName");
+
+            while (iteraUsu.hasNext())
             {
                 Usuario usu = iteraUsu.next();
-                System.out.printf("%10s%40s%25s%25s%25s%15s%25s%25s\n", usu.getIdUsuario(), usu.getCorreo(), usu.getNombre(), usu.getApellido1(), 
-                usu.getApellido2(), usu.getTelefono(), usu.getTelefonoEmergencia(), usu.getNombreUsuario());
+                System.out.printf("%10s%40s%25s%25s%25s%15s%25s%25s\n", usu.getIdUsuario(), usu.getCorreo(), usu.getNombre(), usu.getApellido1(),
+                        usu.getApellido2(), usu.getTelefono(), usu.getTelefonoEmergencia(), usu.getNombreUsuario());
             }
         } catch (ExcepcionProyecto ex)
         {
-            String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL();
+            String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL() + "\n";
             log.logCAD(error);
 
-            System.out.println(ex.getMensajeErrorUsuario());
+            System.err.println(ex.getMensajeErrorUsuario());
         }
 
         System.out.println("Presiona cualquier tecla para volver al menu principal...");

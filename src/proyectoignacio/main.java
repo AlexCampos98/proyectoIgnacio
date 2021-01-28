@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import proyectocad.ExcepcionProyecto;
+import proyectocad.ProyectoCAD;
 
 /**
  *
@@ -22,6 +24,19 @@ public class main
     {
         Scanner entradaDatos = new Scanner(System.in);
         String opcionMenu;
+        
+        try
+        {
+            //IMPORTANTE Desde este constructor podras cambiar la ip, el nombre de la BD y la contraseña.
+            ProyectoCAD cAD = new ProyectoCAD("192.168.1.125", "proyecto", "kk");
+        } catch (ExcepcionProyecto ex)
+        {
+            Logs log = new Logs();
+            String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL() + "\n";
+            log.logCAD(error);
+
+            System.err.println(ex.getMensajeErrorUsuario());
+        }
 
         System.out.println("Bienvenido al programa de gestion de la base de datos.");
 
@@ -40,7 +55,7 @@ public class main
             switch (opcionMenu)
             {
                 case "1":
-                    System.out.println("La opcion elegida es 'Introducir nueva informacion'.\nOpcion 1: Introducir un usuario\nOpcion 2: "
+                    System.out.println("MENU INSERCION DE DATOS.\nOpcion 1: Introducir un usuario\nOpcion 2: "
                             + "Introducir un entrenamiento\nOpcion 3: Atras\nIntroduce el numero de la opcion a elegir: ");
                     opcionMenu = entradaDatos.nextLine();
                     while (!opcionMenu.matches("-?\\d+") || !esEntero(opcionMenu) || Integer.parseInt(opcionMenu) > 3 || Integer.parseInt(opcionMenu) < 0)
@@ -67,7 +82,7 @@ public class main
                     break;
 
                 case "2":
-                    System.out.println("La opcion elegida es 'Modificar informacion'.\nOpcion 1: Modificar un usuario\nOpcion 2: "
+                    System.out.println("MENU MODIFICACION DE INFORMACION.\nOpcion 1: Modificar un usuario\nOpcion 2: "
                             + "Modificar un entrenamiento\nOpcion 3: Atras\nIntroduce el numero de la opcion a elegir: ");
                     opcionMenu = entradaDatos.nextLine();
                     while (!opcionMenu.matches("-?\\d+") || !esEntero(opcionMenu) || Integer.parseInt(opcionMenu) > 3 || Integer.parseInt(opcionMenu) < 0)
@@ -94,7 +109,7 @@ public class main
                     break;
 
                 case "3":
-                    System.out.println("La opcion elegida es 'Eliminar informacion'.\nOpcion 1: Eliminar un usuario\nOpcion 2: "
+                    System.out.println("MENU ELIMINACION DE INFORMACION.\nOpcion 1: Eliminar un usuario\nOpcion 2: "
                             + "Eliminar un entrenamiento\nOpcion 3: Atras\nIntroduce el numero de la opcion a elegir: ");
                     opcionMenu = entradaDatos.nextLine();
                     while (!opcionMenu.matches("-?\\d+") || !esEntero(opcionMenu) || Integer.parseInt(opcionMenu) > 3 || Integer.parseInt(opcionMenu) < 0)
@@ -121,7 +136,7 @@ public class main
                     break;
 
                 case "4":
-                    System.out.println("La opcion elegida es 'Buscar y obtener informacion'.\nOpcion 1: Buscar informacion de un usuario\nOpcion 2: "
+                    System.out.println("MENU BUSQUEDA Y OBTENCION DE INFORMACION.\nOpcion 1: Buscar informacion de un usuario\nOpcion 2: "
                             + "Obtener la informacion de todos los usuarios\nOpcion 3: Buscar informacion de un entrenamiento\n"
                             + "Opcion 4: Obtener la informacion de todos los entrenamientos\nOpcion 5: Atras\nIntroduce el numero de la opcion a elegir: ");
                     opcionMenu = entradaDatos.nextLine();
@@ -158,6 +173,7 @@ public class main
                     }
                     break;
             }
+            System.out.println("\n\n\n\n\n\n\n");
         } while (!opcionMenu.equals("5"));
 
         System.out.println("Has elegido la opcion de salida de la aplicacion. Hasta la vista.");
@@ -185,8 +201,8 @@ public class main
     }
 
     /**
-     * Mét.odo que valida si un string contiene un dato de clase SimpleDateFormat
-     * válido
+     * Mét.odo que valida si un string contiene un dato de clase
+     * SimpleDateFormat válido
      *
      * @param s String a validar si contiene un dato de clase SimpleDateFormat
      * válido

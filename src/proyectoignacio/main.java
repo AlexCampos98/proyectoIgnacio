@@ -60,6 +60,8 @@ public class main
                 opcionMenu = entradaDatos.nextLine();
             }
 
+            System.out.println("\n\n\n\n\n\n\n");
+            
             switch (opcionMenu)
             {
                 case "1":

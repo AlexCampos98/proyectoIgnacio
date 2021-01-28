@@ -27,7 +27,15 @@ public class main
         
         try
         {
-            //IMPORTANTE Desde este constructor podras cambiar la ip, el nombre de la BD y la contraseña.
+            /*
+            *   IMPORTANTE Desde este constructor podras cambiar la ip, el nombre de la BD y la contraseña.
+            *   En caso de quitarlo o usar el constructor por defecto, los parametros por defecto son:
+            *   IP: 192.168.1.125
+            *   BD: proyecto
+            *   Contraseña: kk
+            *
+            *   Es posible eliminar este try/catch, esto hara que se usen los parametros por defecto.
+            */
             ProyectoCAD cAD = new ProyectoCAD("192.168.1.125", "proyecto", "kk");
         } catch (ExcepcionProyecto ex)
         {

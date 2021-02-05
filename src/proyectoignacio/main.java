@@ -38,7 +38,7 @@ public class main
             *
             *   Es posible eliminar este try/catch, esto hara que se usen los parametros por defecto.
              */
-            ProyectoCAD cAD = new ProyectoCAD("172.16.209.69", "proyecto", "kk");
+            ProyectoCAD cAD = new ProyectoCAD("192.168.1.125", "proyecto", "kk");
         } catch (ExcepcionProyecto ex)
         {
             String error = "Codigo de error: " + ex.getCodigoError() + "\nMensaje para el administrador: " + ex.getMensajeErrorAdministrador() + "Sentencia SQL utilizada: " + ex.getSentenciaSQL() + "\n";

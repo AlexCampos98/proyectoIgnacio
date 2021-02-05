@@ -86,6 +86,7 @@ public class MenuEntrenamiento
                 usuEntre = cAD.leerUsuario(Integer.parseInt(id_usuario_entrenador));
                 if (usuEntre.getIdUsuario() == null)
                 {
+                    id_usuario_entrenador = null;
                     System.out.println("El usuario selecionado no existe.");
                     while (!esEntero(id_usuario_entrenador) || id_usuario_entrenador.length() > 3 || Integer.parseInt(id_usuario_entrenador) < 0)
                     {
@@ -100,7 +101,7 @@ public class MenuEntrenamiento
 
             while (!esEntero(id_usuario_deportista) || id_usuario_deportista.length() > 3 || Integer.parseInt(id_usuario_deportista) < 0)
             {
-                System.out.print("Dato erróneo. Introduce de nuevo el identificador del entrenador: ");
+                System.out.print("Dato erróneo. Introduce de nuevo el identificador del deportista: ");
                 id_usuario_deportista = entradaDatos.nextLine();
             }
 
@@ -109,10 +110,11 @@ public class MenuEntrenamiento
                 usuDepor = cAD.leerUsuario(Integer.parseInt(id_usuario_deportista));
                 if (usuDepor.getIdUsuario() == null)
                 {
+                    id_usuario_deportista = null;
                     System.out.println("El usuario selecionado no existe.");
                     while (!esEntero(id_usuario_deportista) || id_usuario_deportista.length() > 3 || Integer.parseInt(id_usuario_deportista) < 0)
                     {
-                        System.out.print("Dato erróneo. Introduce de nuevo el identificador del entrenador: ");
+                        System.out.print("Dato erróneo. Introduce de nuevo el identificador del deportista: ");
                         id_usuario_deportista = entradaDatos.nextLine();
                     }
                 }
@@ -270,6 +272,7 @@ public class MenuEntrenamiento
                     usuEntre = cAD.leerUsuario(Integer.parseInt(id_usuario_entrenador));
                     if (usuEntre.getIdUsuario() == null)
                     {
+                        id_usuario_entrenador = null;
                         System.out.println("El usuario selecionado no existe.");
                         while (!esEntero(id_usuario_entrenador) || id_usuario_entrenador.length() > 5 || Integer.parseInt(id_usuario_entrenador) < 0)
                         {
@@ -299,6 +302,7 @@ public class MenuEntrenamiento
                     usuDepor = cAD.leerUsuario(Integer.parseInt(id_usuario_deportista));
                     if (usuDepor.getIdUsuario() == null)
                     {
+                        id_usuario_deportista = null;
                         System.out.println("El usuario selecionado no existe.");
                         while (!esEntero(id_usuario_deportista) || id_usuario_deportista.length() > 5 || Integer.parseInt(id_usuario_deportista) < 0)
                         {

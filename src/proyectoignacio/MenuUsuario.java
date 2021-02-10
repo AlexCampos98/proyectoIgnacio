@@ -11,8 +11,8 @@ import java.util.Scanner;
 import proyectocad.ExcepcionProyecto;
 import proyectocad.ProyectoCAD;
 import proyectocad.Usuario;
-import static proyectoignacio.main.esCorreo;
-import static proyectoignacio.main.esEntero;
+import static proyectoignacio.Main.esCorreo;
+import static proyectoignacio.Main.esEntero;
 
 /**
  *
@@ -98,9 +98,15 @@ public class MenuUsuario
         System.out.print("Introduce el numero de telefono de emergencia: ");
         telefonoEmergencia = entradaDatos.nextLine();
 
-        while (!esEntero(telefonoEmergencia) || telefonoEmergencia.length() != 9)
+        while (!esEntero(telefonoEmergencia) || telefonoEmergencia.length() != 9 || telefonoEmergencia.equals(telefono))
         {
-            System.out.print("Dato erróneo. Introduce de nuevo el numero de telefono de emergencia (9 numeros): ");
+            if (telefonoEmergencia.equals(telefono))
+            {
+                System.out.print("El numero de telefono de emergencia no puede ser el mismo que el numero de telefono.\nIntroduce otro numero de telefono de emergencia: ");
+            } else
+            {
+                System.out.print("Dato erróneo. Introduce de nuevo el numero de telefono de emergencia (9 numeros): ");
+            }
             telefonoEmergencia = entradaDatos.nextLine();
         }
 
@@ -304,9 +310,15 @@ public class MenuUsuario
                     telefonoEmergencia = usu.getTelefonoEmergencia();
                 } else
                 {
-                    while (!esEntero(telefonoEmergencia) || telefonoEmergencia.length() != 9)
+                    while (!esEntero(telefonoEmergencia) || telefonoEmergencia.length() != 9 || telefonoEmergencia.equals(telefono))
                     {
-                        System.out.print("Dato erróneo. Introduce de nuevo el numero de telefono de emergencia: ");
+                        if (telefonoEmergencia.equals(telefono))
+                        {
+                            System.out.print("El numero de telefono de emergencia no puede ser el mismo que el numero de telefono.\nIntroduce otro numero de telefono de emergencia: ");
+                        } else
+                        {
+                            System.out.print("Dato erróneo. Introduce de nuevo el numero de telefono de emergencia (9 numeros): ");
+                        }
                         telefonoEmergencia = entradaDatos.nextLine();
                     }
                 }

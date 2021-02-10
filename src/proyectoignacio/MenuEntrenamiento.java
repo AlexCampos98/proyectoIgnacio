@@ -15,8 +15,8 @@ import proyectocad.Entrenamiento;
 import proyectocad.ExcepcionProyecto;
 import proyectocad.ProyectoCAD;
 import proyectocad.Usuario;
-import static proyectoignacio.main.esEntero;
-import static proyectoignacio.main.esFecha;
+import static proyectoignacio.Main.esEntero;
+import static proyectoignacio.Main.esFecha;
 
 /**
  *
@@ -87,7 +87,7 @@ public class MenuEntrenamiento
                 if (usuEntre.getIdUsuario() == null)
                 {
                     id_usuario_entrenador = null;
-                    System.out.println("El usuario selecionado no existe.");
+                    System.out.println("El entrenador selecionado no existe.");
                     while (!esEntero(id_usuario_entrenador) || id_usuario_entrenador.length() > 3 || Integer.parseInt(id_usuario_entrenador) < 0)
                     {
                         System.out.print("Dato erróneo. Introduce de nuevo el identificador del entrenador: ");
@@ -111,7 +111,7 @@ public class MenuEntrenamiento
                 if (usuDepor.getIdUsuario() == null)
                 {
                     id_usuario_deportista = null;
-                    System.out.println("El usuario selecionado no existe.");
+                    System.out.println("El deportista selecionado no existe.");
                     while (!esEntero(id_usuario_deportista) || id_usuario_deportista.length() > 3 || Integer.parseInt(id_usuario_deportista) < 0)
                     {
                         System.out.print("Dato erróneo. Introduce de nuevo el identificador del deportista: ");
